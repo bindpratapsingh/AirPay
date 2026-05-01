@@ -6,7 +6,7 @@
 
 ## 📥 Downloads
 You can find the latest stable version of the app in the **Releases** section.
-- **[Download Latest APK](https://github.com/bindpratapsingh/AirPay/releases/latest)**
+- **[Download Latest APK](https://github.com/YOUR_USERNAME/AirPay/releases/latest)**
 
 ---
 
@@ -33,7 +33,7 @@ AirPay simplifies the complex \*99# USSD menu system. When you initiate a paymen
 *(Add your screenshots here later)*
 
 ## 🛠️ Installation & Setup
-1. Clone the repository: `git clone https://github.com/bindpratapsingh/AirPay.git`
+1. Clone the repository: `git clone https://github.com/YOUR_USERNAME/AirPay.git`
 2. Open in **Android Studio**.
 3. Build the APK: `Build > Build Bundle(s) / APK(s) > Build APK(s)`.
 4. Install on an Android device with a SIM card registered for UPI.
@@ -42,4 +42,4 @@ AirPay simplifies the complex \*99# USSD menu system. When you initiate a paymen
 *AirPay is an independent tool designed to facilitate the use of the \*99# USSD service provided by NPCI. Ensure your bank and mobile operator support USSD/IVR payments before use. Carrier charges for USSD/Calls may apply.*
 
 ---
-Developed by [Bindp](https://github.com/bindpratapsingh)
+Developed by [Bindp](https://github.com/YOUR_USERNAME)

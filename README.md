@@ -29,9 +29,6 @@ AirPay simplifies the complex \*99# USSD menu system. When you initiate a paymen
 - **Storage:** SharedPreferences (Encrypted)
 - **Security:** BiometricPrompt API
 
-//## 📸 Screenshots
-//*(Add your screenshots here later)*
-
 ## 🛠️ Installation & Setup
 1. Clone the repository: `git clone https://github.com/bindpratapsingh/AirPay.git`
 2. Open in **Android Studio**.

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary brand colors - Deep indigo/violet -->
+    <color name="primary">#5C35D9</color>
+    <color name="primary_variant">#3B1FAB</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#E8E0FF</color>
+    <color name="on_primary_container">#1A0070</color>
+
+    <!-- Secondary - Teal -->
+    <color name="secondary">#00796B</color>
+    <color name="secondary_variant">#004D40</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="secondary_container">#B2DFDB</color>
+
+    <!-- Surface -->
+    <color name="surface">#FAFAFA</color>
+    <color name="surface_variant">#F3F0FF</color>
+    <color name="on_surface">#1A1A2E</color>
+    <color name="on_surface_variant">#49454F</color>
+
+    <!-- Background -->
+    <color name="background">#FAFAFA</color>
+    <color name="on_background">#1A1A2E</color>
+
+    <!-- Error -->
+    <color name="error">#B3261E</color>
+    <color name="on_error">#FFFFFF</color>
+
+    <!-- Semantic -->
+    <color name="success">#2E7D32</color>
+    <color name="warning">#F57F17</color>
+    <color name="info">#0277BD</color>
+
+    <!-- Card backgrounds -->
+    <color name="card_balance">#5C35D9</color>
+    <color name="card_pending">#00796B</color>
+    <color name="card_statement">#D84315</color>
+    <color name="card_pin">#37474F</color>
+
+    <!-- Divider -->
+    <color name="divider">#E0E0E0</color>
+    <color name="disabled">#BDBDBD</color>
+
+    <!-- Bottom nav -->
+    <color name="bottom_nav_bg">#FFFFFF</color>
+    <color name="bottom_nav_selected">#5C35D9</color>
+    <color name="bottom_nav_unselected">#9E9E9E</color>
+</resources>

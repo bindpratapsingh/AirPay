@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.OfflineUPI" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/on_primary_container</item>
+
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="colorSecondaryContainer">@color/secondary_container</item>
+
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorSurfaceVariant">@color/surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
+
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/on_error</item>
+
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/primary_variant</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!-- Material 2 compatibility attributes -->
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorSecondaryVariant">@color/secondary_variant</item>
+
+        <!-- Material 3 Text Appearances -->
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.OfflineUPI.Headline4</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.OfflineUPI.Headline5</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.OfflineUPI.Headline6</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.OfflineUPI.Headline6</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.OfflineUPI.Subtitle1</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.OfflineUPI.Subtitle2</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.OfflineUPI.Body1</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.OfflineUPI.Body2</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.OfflineUPI.Button</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.OfflineUPI.Caption</item>
+
+        <!-- Material 2 Text Appearances (Compatibility) -->
+        <item name="textAppearanceHeadline4">@style/TextAppearance.OfflineUPI.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.OfflineUPI.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.OfflineUPI.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.OfflineUPI.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.OfflineUPI.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.OfflineUPI.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.OfflineUPI.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.OfflineUPI.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.OfflineUPI.Button</item>
+    </style>
+
+    <style name="Theme.OfflineUPI.Splash" parent="Theme.OfflineUPI">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@color/primary</item>
+    </style>
+
+    <style name="Theme.OfflineUPI.NoActionBar" parent="Theme.OfflineUPI">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Widget.OfflineUPI.Button" parent="Widget.Material3.Button">
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <style name="TextAppearance.OfflineUPI.Body1" parent="TextAppearance.Material3.BodyLarge">
+    </style>
+
+    <style name="TextAppearance.OfflineUPI.Body2" parent="TextAppearance.Material3.BodyMedium">
+    </style>
+
+    <style name="TextAppearance.OfflineUPI.Headline4" parent="TextAppearance.Material3.HeadlineLarge">
+    </style>
+
+    <style name="TextAppearance.OfflineUPI.Headline5" parent="TextAppearance.Material3.HeadlineMedium">
+    </style>
+
+    <style name="TextAppearance.OfflineUPI.Headline6" parent="TextAppearance.Material3.HeadlineSmall">
+    </style>
+
+    <style name="TextAppearance.OfflineUPI.Subtitle1" parent="TextAppearance.Material3.TitleMedium">
+    </style>
+
+    <style name="TextAppearance.OfflineUPI.Subtitle2" parent="TextAppearance.Material3.TitleSmall">
+    </style>
+
+    <style name="TextAppearance.OfflineUPI.Caption" parent="TextAppearance.Material3.LabelSmall">
+    </style>
+
+    <style name="TextAppearance.OfflineUPI.Button" parent="TextAppearance.Material3.LabelLarge">
+    </style>
+
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AirPay</string>
+    <string name="tagline">Pay without internet</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_pay">Pay</string>
+    <string name="nav_history">History</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Home -->
+    <string name="quick_actions">Quick Actions</string>
+    <string name="check_balance">Check Balance</string>
+    <string name="pending_requests">Pending</string>
+    <string name="mini_statement">Statement</string>
+    <string name="change_pin">Change PIN</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="favourites">Favourites</string>
+    <string name="no_favourites">Add frequently used contacts\nas favourites for quick access</string>
+
+    <!-- Pay -->
+    <string name="send_money">Send Money</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="upi_id">UPI ID</string>
+    <string name="amount">Amount (₹)</string>
+    <string name="select_sim">Select SIM</string>
+    <string name="pay_offline">Pay Offline</string>
+    <string name="add_favourite">Save Favourite</string>
+
+    <!-- History -->
+    <string name="transaction_history">Transaction History</string>
+    <string name="no_history">No transactions yet.\nMake your first payment!</string>
+    <string name="clear_history">Clear History</string>
+
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+    <string name="your_name">Your Name</string>
+    <string name="network_mode">Network Mode</string>
+    <string name="jio_mode">Jio / IVR Mode</string>
+    <string name="security">Security</string>
+    <string name="pin_lock">PIN Lock</string>
+    <string name="biometric_lock">Fingerprint Unlock</string>
+    <string name="theme">App Theme</string>
+    <string name="sim_preference">SIM Preference</string>
+    <string name="about">About</string>
+    <string name="version">Version 1.0.0</string>
+
+    <!-- Auth -->
+    <string name="enter_pin">Enter PIN</string>
+    <string name="set_pin">Set PIN</string>
+    <string name="confirm_pin">Confirm PIN</string>
+    <string name="skip_for_now">Skip for now</string>
+    <string name="use_fingerprint">Use Fingerprint</string>
+
+    <!-- Errors -->
+    <string name="error_permission">Phone permission required</string>
+    <string name="error_invalid_mobile">Invalid mobile number</string>
+    <string name="error_invalid_upi">Invalid UPI ID</string>
+    <string name="error_invalid_amount">Invalid amount</string>
+</resources>

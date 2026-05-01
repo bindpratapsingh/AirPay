@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme for Dark Mode. -->
+    <style name="Theme.OfflineUPI" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- The attributes will be inherited from the main themes.xml,
+             but you can override dark-specific colors here if needed in the future. -->
+        <item name="android:statusBarColor">@color/primary_variant</item>
+    </style>
+</resources>

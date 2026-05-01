@@ -1,5 +1,4 @@
-# AirPay - Offline UPI Payments 💸<img width="256" height="256" alt="icon" src="https://github.com/user-attachments/assets/34d212a6-29da-4269-9c72-167834d4276e" />
-
+# AirPay - Offline UPI Payments 💸
 
 **AirPay** is an Android application designed to enable UPI (Unified Payments Interface) transactions without an active internet connection. By utilizing the **\*99# USSD** service and **IVR** (Interactive Voice Response) channels, AirPay provides financial accessibility to users in low-connectivity areas or those with limited data access.
 
@@ -41,3 +40,4 @@ AirPay simplifies the complex \*99# USSD menu system. When you initiate a paymen
 
 ---
 Developed by [Bind Pratap Singh](https://github.com/bindpratapsingh)
+<img width="256" height="256" alt="icon" src="https://github.com/user-attachments/assets/34d212a6-29da-4269-9c72-167834d4276e" />

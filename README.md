@@ -38,9 +38,6 @@ AirPay simplifies the complex \*99# USSD menu system. When you initiate a paymen
 ## ⚠️ Disclaimer
 *AirPay is an independent tool designed to facilitate the use of the \*99# USSD service provided by NPCI. Ensure your bank and mobile operator support USSD/IVR payments before use. Carrier charges for USSD/Calls may apply.*
 
-## ⚖️ License
-This project is **Proprietary**. All rights are reserved by **Bind Pratap Singh**. Unauthorized copying, modification, or distribution of this code or its binaries is strictly prohibited. 
-
 ## 📩 Contact & Support
 For any inquiries, support, or feedback, please reach out via:
 - **Email:** [bindpratapsingh@gmail.com](mailto:bindpratapsingh@gmail.com)

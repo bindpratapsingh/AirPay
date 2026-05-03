@@ -33,7 +33,7 @@ public class SettingsFragment extends Fragment {
     private SwitchMaterial switchJio, switchBiometric, switchPin;
     private AutoCompleteTextView etTheme, etSim;
     private TextView tvVersion, tvGithubLink;
-    private View btnCheckUpdates;
+    private View btnCheckUpdates, btnSupport;
 
     @Nullable
     @Override
@@ -62,6 +62,7 @@ public class SettingsFragment extends Fragment {
         tvVersion = view.findViewById(R.id.tvVersion);
         tvGithubLink = view.findViewById(R.id.tvGithubLink);
         btnCheckUpdates = view.findViewById(R.id.btnCheckUpdates);
+        btnSupport = view.findViewById(R.id.btnSupport);
     }
 
     private void loadCurrentSettings() {
@@ -86,6 +87,13 @@ public class SettingsFragment extends Fragment {
         if (btnCheckUpdates != null) {
             btnCheckUpdates.setOnClickListener(v -> {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/bindpratapsingh/airpay/releases"));
+                startActivity(browserIntent);
+            });
+        }
+
+        if (btnSupport != null) {
+            btnSupport.setOnClickListener(v -> {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/bindpratapsingh/airpay/issues"));
                 startActivity(browserIntent);
             });
         }

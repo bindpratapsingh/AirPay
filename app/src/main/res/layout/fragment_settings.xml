@@ -392,6 +392,14 @@
                         android:layout_marginTop="8dp"
                         android:text="Check for Updates"
                         app:icon="@android:drawable/stat_sys_download" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSupport"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Support and Feedback"
+                        app:icon="@android:drawable/ic_menu_help" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

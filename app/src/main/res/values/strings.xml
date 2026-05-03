@@ -29,7 +29,8 @@
     <string name="add_favourite">Save Favourite</string>
 
     <!-- History -->
-    <string name="transaction_history">Transaction History</string>
+    <string name="transaction_history">Activity History</string>
+    <string name="history_subtitle">Log of USSD requests dialled from this app</string>
     <string name="no_history">No transactions yet.\nMake your first payment!</string>
     <string name="clear_history">Clear History</string>
 
@@ -44,7 +45,9 @@
     <string name="theme">App Theme</string>
     <string name="sim_preference">SIM Preference</string>
     <string name="about">About</string>
-    <string name="version">Version 1.0.0</string>
+    <string name="about_description">AirPay allows you to perform UPI transactions entirely without internet. It acts as an intelligent wrapper for NPCI\'s *99# USSD service, automating complex dialling strings into a modern digital wallet experience.</string>
+    <string name="security_note">Note: NPCI may ask you to change your UPI PIN once or twice for security purposes if you are starting to use offline payments.</string>
+    <string name="version_format">Version %s</string>
 
     <!-- Auth -->
     <string name="enter_pin">Enter PIN</string>
@@ -52,6 +55,11 @@
     <string name="confirm_pin">Confirm PIN</string>
     <string name="skip_for_now">Skip for now</string>
     <string name="use_fingerprint">Use Fingerprint</string>
+
+    <!-- Success Dialog -->
+    <string name="ussd_dialled">USSD Request Sent</string>
+    <string name="ussd_instructions">The request has been sent to the network. Please follow the instructions in the system popup and enter your UPI PIN there to complete the action.</string>
+    <string name="understood">Understood</string>
 
     <!-- Errors -->
     <string name="error_permission">Phone permission required</string>

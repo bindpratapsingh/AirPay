@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,12 +24,16 @@ import com.offlineupi.app.utils.AppPreferences;
 import com.offlineupi.app.utils.SecurityUtils;
 import com.offlineupi.app.utils.USSDBuilder;
 
+import java.util.Objects;
+
 public class SettingsFragment extends Fragment {
 
     private AppPreferences prefs;
     private TextInputEditText etUserName;
     private SwitchMaterial switchJio, switchBiometric, switchPin;
     private AutoCompleteTextView etTheme, etSim;
+    private TextView tvVersion, tvGithubLink;
+    private View btnCheckUpdates;
 
     @Nullable
     @Override
@@ -54,6 +59,9 @@ public class SettingsFragment extends Fragment {
         switchPin = view.findViewById(R.id.switchPin);
         etTheme = view.findViewById(R.id.etTheme);
         etSim = view.findViewById(R.id.etSimPreference);
+        tvVersion = view.findViewById(R.id.tvVersion);
+        tvGithubLink = view.findViewById(R.id.tvGithubLink);
+        btnCheckUpdates = view.findViewById(R.id.btnCheckUpdates);
     }
 
     private void loadCurrentSettings() {
@@ -62,12 +70,33 @@ public class SettingsFragment extends Fragment {
         switchBiometric.setChecked(prefs.isBiometricEnabled());
         switchPin.setChecked(prefs.isPinEnabled());
 
+        // Set version dynamically from BuildConfig
+        if (tvVersion != null) {
+            tvVersion.setText(getString(R.string.version_format, com.offlineupi.app.BuildConfig.VERSION_NAME));
+        }
+
+        if (tvGithubLink != null) {
+            tvGithubLink.setText("github.com/bindpratapsingh/airpay");
+            tvGithubLink.setOnClickListener(v -> {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/bindpratapsingh/airpay"));
+                startActivity(browserIntent);
+            });
+        }
+
+        if (btnCheckUpdates != null) {
+            btnCheckUpdates.setOnClickListener(v -> {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/bindpratapsingh/airpay/releases"));
+                startActivity(browserIntent);
+            });
+        }
+
         // Theme dropdown
         String[] themes = {"System Default", "Light", "Dark"};
         ArrayAdapter<String> themeAdapter = new ArrayAdapter<>(
                 requireContext(), android.R.layout.simple_dropdown_item_1line, themes);
         etTheme.setAdapter(themeAdapter);
-        int themeIdx = prefs.getTheme().equals("light") ? 1 : prefs.getTheme().equals("dark") ? 2 : 0;
+        int themeIdx = Objects.equals(prefs.getTheme(), "light") ? 1 : 
+                       Objects.equals(prefs.getTheme(), "dark") ? 2 : 0;
         etTheme.setText(themes[themeIdx], false);
 
         // SIM dropdown

@@ -14,6 +14,8 @@ public class Transaction implements Serializable {
         CHECK_BALANCE,
         PENDING_REQUESTS,
         CHANGE_PIN,
+        SET_UPI_PIN,
+        CHANGE_ACCOUNT,
         MINI_STATEMENT,
         VIEW_PROFILE,
         CHANGE_LANGUAGE,
@@ -65,6 +67,10 @@ public class Transaction implements Serializable {
                 return "Pending Requests";
             case CHANGE_PIN:
                 return "Change UPI PIN";
+            case SET_UPI_PIN:
+                return "Set/Forgot UPI PIN";
+            case CHANGE_ACCOUNT:
+                return "Change Bank Account";
             case MINI_STATEMENT:
                 return "Mini Statement";
             case VIEW_PROFILE:

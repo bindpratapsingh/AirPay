@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,10 +125,18 @@ public class HomeFragment extends Fragment {
         View cardPending = view.findViewById(R.id.cardPending);
         View cardRequest = view.findViewById(R.id.cardRequestMoney);
         View cardStatement = view.findViewById(R.id.cardMiniStatement);
+        View btnViewProfile = view.findViewById(R.id.btnViewProfile);
+        View btnChangeAccount = view.findViewById(R.id.btnChangeAccount);
+        View cardForgotPin = view.findViewById(R.id.cardForgotPin);
+        View cardChangePin = view.findViewById(R.id.cardChangePin);
 
         if (cardPending != null) cardPending.setVisibility(visibility);
         if (cardRequest != null) cardRequest.setVisibility(visibility);
         if (cardStatement != null) cardStatement.setVisibility(visibility);
+        if (btnViewProfile != null) btnViewProfile.setVisibility(visibility);
+        if (btnChangeAccount != null) btnChangeAccount.setVisibility(visibility);
+        if (cardForgotPin != null) cardForgotPin.setVisibility(visibility);
+        if (cardChangePin != null) cardChangePin.setVisibility(visibility);
     }
 
     private void setupFavorites() {
@@ -163,12 +172,40 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupQuickActions(View view) {
+        // Account Management
+        view.findViewById(R.id.btnViewProfile).setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            executeUssd(Transaction.Type.VIEW_PROFILE, USSDBuilder.viewProfile());
+        });
+
+        view.findViewById(R.id.btnChangeAccount).setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            executeUssd(Transaction.Type.CHANGE_ACCOUNT, USSDBuilder.changeAccount());
+        });
+
+        // Quick Actions Row 1
         setupCard(view.findViewById(R.id.cardBalance), "💰", "Balance", () -> executeUssd(Transaction.Type.CHECK_BALANCE, USSDBuilder.checkBalance()));
         setupCard(view.findViewById(R.id.cardMiniStatement), "📋", "Statement", () -> executeUssd(Transaction.Type.MINI_STATEMENT, USSDBuilder.miniStatement()));
+        setupCard(view.findViewById(R.id.cardForgotPin), "🔑", "Set PIN", () -> executeUssd(Transaction.Type.SET_UPI_PIN, USSDBuilder.setForgotPin()));
+        setupCard(view.findViewById(R.id.cardChangePin), "⚙️", "Change PIN", () -> executeUssd(Transaction.Type.CHANGE_PIN, USSDBuilder.changePin()));
+
+        // Row 2
         setupCard(view.findViewById(R.id.cardPending), "⏳", "Pending", () -> executeUssd(Transaction.Type.PENDING_REQUESTS, USSDBuilder.pendingRequests()));
         setupCard(view.findViewById(R.id.cardRequestMoney), "📲", "Request", () -> executeUssd(Transaction.Type.REQUEST_MONEY, USSDBuilder.requestMoney()));
 
+        // New User Notice
+        View cardNotice = view.findViewById(R.id.cardNewUserNotice);
+        if (prefs.shouldShowAccountNotice()) {
+            cardNotice.setVisibility(View.VISIBLE);
+        }
+        view.findViewById(R.id.btnCloseNotice).setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            cardNotice.setVisibility(View.GONE);
+            prefs.setAccountNoticeDismissed();
+        });
+
         view.findViewById(R.id.btnPayNow).setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             BottomNavigationView bottomNav = requireActivity().findViewById(R.id.bottom_nav);
             if (bottomNav != null) {
                 bottomNav.setSelectedItemId(R.id.payFragment);
@@ -184,7 +221,10 @@ public class HomeFragment extends Fragment {
         TextView tvLabel = card.findViewById(R.id.tvCardLabel);
         if (tvIcon != null) tvIcon.setText(icon);
         if (tvLabel != null) tvLabel.setText(label);
-        card.setOnClickListener(v -> action.run());
+        card.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            action.run();
+        });
     }
 
     private void executeUssd(Transaction.Type type, String ussdCode) {

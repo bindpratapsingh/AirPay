@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -102,6 +103,7 @@ public class ScannerActivity extends AppCompatActivity {
                     scanner.process(inputImage)
                             .addOnSuccessListener(barcodes -> {
                                 for (Barcode barcode : barcodes) {
+                                    previewView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                                     handleBarcode(barcode.getRawValue());
                                 }
                             })

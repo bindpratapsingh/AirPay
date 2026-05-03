@@ -1,10 +1,14 @@
 package com.offlineupi.app.fragments;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -45,6 +51,27 @@ public class PayFragment extends Fragment {
     private TextView tvMenuMessage;
 
     private AppPreferences prefs;
+    private String selectedContactName = null;
+
+    private final ActivityResultLauncher<Intent> contactPickerLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                    handleContactResult(result.getData().getData());
+                }
+            }
+    );
+
+    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    pickContact();
+                } else {
+                    Toast.makeText(requireContext(), "Permission required to access contacts", Toast.LENGTH_SHORT).show();
+                }
+            }
+    );
 
     @Nullable
     @Override
@@ -178,6 +205,7 @@ public class PayFragment extends Fragment {
 
     private void setupPayButton() {
         btnPay.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             if (prefs.isJioMode()) {
                 dialIvr();
                 return;
@@ -191,6 +219,47 @@ public class PayFragment extends Fragment {
                 dialUssd(USSDBuilder.sendMoneyByAccountMenu(), "Account Menu", 0);
             }
         });
+
+        tilIdentifier.setEndIconOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_CONTACTS)
+                    == PackageManager.PERMISSION_GRANTED) {
+                pickContact();
+            } else {
+                requestPermissionLauncher.launch(Manifest.permission.READ_CONTACTS);
+            }
+        });
+    }
+
+    private void pickContact() {
+        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+        contactPickerLauncher.launch(intent);
+    }
+
+    private void handleContactResult(Uri contactUri) {
+        String[] projection = {
+                ContactsContract.CommonDataKinds.Phone.NUMBER,
+                ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
+        };
+        try (Cursor cursor = requireContext().getContentResolver().query(contactUri, projection, null, null, null)) {
+            if (cursor != null && cursor.moveToFirst()) {
+                int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                int nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                
+                String number = cursor.getString(numberIndex);
+                selectedContactName = cursor.getString(nameIndex);
+                
+                // Clean the number
+                String cleanedNumber = number.replaceAll("\\s+", "").replaceAll("[^0-9]", "");
+                if (cleanedNumber.length() > 10) {
+                    cleanedNumber = cleanedNumber.substring(cleanedNumber.length() - 10);
+                }
+                etIdentifier.setText(cleanedNumber);
+                
+                // Update hint to show we are paying to this person
+                tilIdentifier.setHelperText("Paying to: " + selectedContactName);
+            }
+        }
     }
 
     private void validateAndPayMobile() {
@@ -199,6 +268,10 @@ public class PayFragment extends Fragment {
 
         if (identifier.isEmpty()) {
             tilIdentifier.setError("Enter mobile number");
+            return;
+        }
+        if (identifier.length() != 10) {
+            tilIdentifier.setError("Mobile number must be 10 digits");
             return;
         }
         tilIdentifier.setError(null);
@@ -217,13 +290,26 @@ public class PayFragment extends Fragment {
             return;
         }
 
+        if (amount <= 0) {
+            tilAmount.setError("Amount must be greater than 0");
+            return;
+        }
+        if (amount > 100000) {
+            tilAmount.setError("Maximum limit is ₹1,00,000");
+            return;
+        }
+        tilAmount.setError(null);
+
         String ussdCode = USSDBuilder.sendMoneyByMobile(identifier, amountStr);
         String displayAmount = String.format(Locale.getDefault(), "₹%.0f", amount);
         
         new MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Confirm Payment")
                 .setMessage("Send " + displayAmount + " to " + identifier + "?")
-                .setPositiveButton("Confirm & Call", (d, w) -> dialUssd(ussdCode, identifier, amount))
+                .setPositiveButton("Confirm", (d, w) -> {
+                    // Trigger the USSD call
+                    dialUssd(ussdCode, identifier, amount);
+                })
                 .setNegativeButton("Cancel", null)
                 .show();
     }
@@ -242,6 +328,11 @@ public class PayFragment extends Fragment {
     private void showAddFavoriteDialog(String identifier) {
         View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_favorite, null);
         TextInputEditText etName = dialogView.findViewById(R.id.etFavName);
+        
+        // Pre-fill name if we just picked from contacts
+        if (selectedContactName != null && !selectedContactName.isEmpty()) {
+            etName.setText(selectedContactName);
+        }
 
         new MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Save as Favourite")

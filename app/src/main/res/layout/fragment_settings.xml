@@ -72,7 +72,8 @@
                         android:id="@+id/etUserName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:maxLength="30" />
                 </com.google.android.material.textfield.TextInputLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -316,7 +317,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="1dp"
                 app:cardBackgroundColor="@color/surface_variant">
@@ -336,6 +337,7 @@
                         android:textColor="?attr/colorOnSurface" />
 
                     <TextView
+                        android:id="@+id/tvVersion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Version 1.0.0"
@@ -346,28 +348,80 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Made with ❤️ by Bind Pratap Singh"
+                        android:text="Professional Offline UPI Solution"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="@color/primary"
                         android:layout_marginTop="16dp" />
 
                     <TextView
-                        android:id="@+id/tvGithubLink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="github.com/bindpratapsingh"
+                        android:text="@string/about_description"
                         android:textSize="13sp"
-                        android:textColor="?attr/colorPrimary"
-                        android:layout_marginTop="2dp"
-                        android:autoLink="web"
-                        android:linksClickable="true" />
+                        android:textColor="?attr/colorOnSurface"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="3dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Powered by *99# NPCI USSD gateway. Works on all mobile networks. Requires active SIM with bank registration."
-                        android:textSize="11sp"
+                        android:text="@string/security_note"
+                        android:textSize="13sp"
+                        android:textStyle="italic"
+                        android:textColor="@color/primary"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="3dp" />
+
+                    <TextView
+                        android:id="@+id/tvGithubLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🔗 airpay.github.io/bindpratapsingh"
+                        android:textSize="13sp"
+                        android:textColor="?attr/colorPrimary"
+                        android:layout_marginTop="12dp"
+                        android:autoLink="web"
+                        android:linksClickable="true" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCheckUpdates"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Check for Updates"
+                        app:icon="@android:drawable/stat_sys_download" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Privacy Policy -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🛡️ Privacy Policy"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AirPay is built with 'Privacy by Design'. \n\n• No Cloud Connection: The app does not connect to any external servers.\n• 100% Local Storage: All your names, favorite contacts, and transaction history are stored only on your device.\n• No Data Tracking: We do not collect or share any usage analytics.\n• Full Deletion: On uninstalling the app, Android will permanently delete all stored data and payment history.\n\nSecurity is provided via Android's native Biometric and PIN encryption layers."
+                        android:textSize="12sp"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         android:layout_marginTop="12dp"
                         android:lineSpacingExtra="3dp" />

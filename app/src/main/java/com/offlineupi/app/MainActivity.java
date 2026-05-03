@@ -18,6 +18,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.color.DynamicColors;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.offlineupi.app.utils.AppPreferences;
 
@@ -41,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Enable Material You Dynamic Colors
+        DynamicColors.applyToActivitiesIfAvailable(this.getApplication());
+
         super.onCreate(savedInstanceState);
 
         // Apply saved theme preference
@@ -64,13 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
         // FAB is now always visible to avoid awkward layout shifts
         updateFabVisibility(false);
-
-        // Request CALL_PHONE permission on startup
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE);
-        }
     }
 
     public void updateFabVisibility(boolean isJio) {
@@ -110,6 +108,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        checkMandatoryPermissions();
+    }
+
+    private void checkMandatoryPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE);
+        }
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CALL_PHONE) {
@@ -117,12 +129,16 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(findViewById(android.R.id.content),
                         "Phone permission granted ✓", Snackbar.LENGTH_SHORT).show();
             } else {
-                Snackbar.make(findViewById(android.R.id.content),
-                        "Phone permission required to make USSD calls",
-                        Snackbar.LENGTH_LONG)
-                        .setAction("Retry", v ->
-                                ActivityCompat.requestPermissions(this,
-                                        new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE))
+                // User denied mandatory permission, ask again with a clear message
+                new MaterialAlertDialogBuilder(this)
+                        .setTitle("Permission Required")
+                        .setMessage("AirPay requires Phone permission to dial USSD codes for offline payments. The app cannot function without it.")
+                        .setCancelable(false)
+                        .setPositiveButton("Grant Permission", (dialog, which) -> {
+                            ActivityCompat.requestPermissions(this,
+                                    new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE);
+                        })
+                        .setNegativeButton("Exit", (dialog, which) -> finish())
                         .show();
             }
         }

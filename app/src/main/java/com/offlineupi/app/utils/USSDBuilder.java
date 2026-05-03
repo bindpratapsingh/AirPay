@@ -49,11 +49,19 @@ public class USSDBuilder {
     }
 
     /**
-     * View Profile (UPI ID and Name): *99*4*3#
+     * View Profile / Change Account: *99*4*3#
      */
     public static String viewProfile() {
         return BASE + "4*3" + HASH;
     }
+
+    /**
+     * Change Linked Bank Account: *99*4*1#
+     */
+    public static String changeAccount() {
+        return BASE + "4*1" + HASH;
+    }
+
 
     /**
      * Change Language: *99*4*2#
@@ -77,6 +85,20 @@ public class USSDBuilder {
     }
 
     /**
+     * Set/Forgot UPI PIN: *99*7*1#
+     */
+    public static String setForgotPin() {
+        return BASE + "7*1" + HASH;
+    }
+
+    /**
+     * Change UPI PIN: *99*7*2#
+     */
+    public static String changePin() {
+        return BASE + "7*2" + HASH;
+    }
+
+    /**
      * Build the full tel: URI for the intent
      */
     public static String buildTelUri(String ussdCode) {
@@ -95,9 +117,9 @@ public class USSDBuilder {
         if (mobile == null || mobile.trim().isEmpty()) {
             throw new IllegalArgumentException("Mobile number cannot be empty");
         }
-        String cleaned = mobile.replaceAll("\\s+", "").replaceAll("[^0-9+]", "");
-        if (cleaned.length() < 10) {
-            throw new IllegalArgumentException("Invalid mobile number");
+        String cleaned = mobile.replaceAll("\\s+", "").replaceAll("[^0-9]", "");
+        if (cleaned.length() != 10) {
+            throw new IllegalArgumentException("Mobile number must be exactly 10 digits");
         }
     }
 
@@ -108,6 +130,7 @@ public class USSDBuilder {
         try {
             double val = Double.parseDouble(amount.trim());
             if (val <= 0) throw new IllegalArgumentException("Amount must be positive");
+            if (val > 100000) throw new IllegalArgumentException("Amount cannot exceed ₹1,00,000");
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Invalid amount format");
         }

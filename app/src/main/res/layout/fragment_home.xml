@@ -95,6 +95,40 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Account Management"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- New Big Button: View Account Details -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnViewProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="View Account Details"
+                    android:textAllCaps="false"
+                    android:textSize="15sp"
+                    app:icon="@android:drawable/ic_menu_myplaces"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/btnChangeAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Not the right account? Change Bank Account ↗"
+                    android:textColor="@color/primary"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Quick Actions"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -114,13 +148,79 @@
                     <!-- Statement -->
                     <include layout="@layout/item_home_card" android:id="@+id/cardMiniStatement" />
 
+                    <!-- Set PIN -->
+                    <include layout="@layout/item_home_card" android:id="@+id/cardForgotPin" />
+
+                    <!-- Change PIN -->
+                    <include layout="@layout/item_home_card" android:id="@+id/cardChangePin" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/gridActionsExtra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical">
+
                     <!-- Pending -->
                     <include layout="@layout/item_home_card" android:id="@+id/cardPending" />
 
                     <!-- Request -->
                     <include layout="@layout/item_home_card" android:id="@+id/cardRequestMoney" />
 
+                    <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
+                    <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
+
                 </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Mandatory Check Notice for New Users -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardNewUserNotice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="16dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#FFCDD2"
+            app:cardBackgroundColor="#FFF5F5"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚠️"
+                    android:textSize="20sp"
+                    android:layout_marginEnd="12dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Important: Check if the correct bank account is linked before your first payment."
+                    android:textColor="#C62828"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnCloseNotice"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Close"
+                    app:tint="#C62828" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

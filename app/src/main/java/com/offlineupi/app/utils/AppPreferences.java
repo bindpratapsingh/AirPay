@@ -26,6 +26,7 @@ public class AppPreferences {
     private static final String KEY_THEME = "app_theme";          // "light","dark","system"
     private static final String KEY_FIRST_LAUNCH = "first_launch";
     private static final String KEY_JIO_SETUP_DONE = "jio_setup_done";
+    private static final String KEY_SHOW_ACCOUNT_NOTICE = "show_account_notice";
     private static final int MAX_TRANSACTIONS = 50;
 
     private final SharedPreferences prefs;
@@ -177,5 +178,13 @@ public class AppPreferences {
 
     public void setJioSetupDone(boolean done) {
         prefs.edit().putBoolean(KEY_JIO_SETUP_DONE, done).apply();
+    }
+
+    public boolean shouldShowAccountNotice() {
+        return prefs.getBoolean(KEY_SHOW_ACCOUNT_NOTICE, true);
+    }
+
+    public void setAccountNoticeDismissed() {
+        prefs.edit().putBoolean(KEY_SHOW_ACCOUNT_NOTICE, false).apply();
     }
 }

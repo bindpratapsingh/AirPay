@@ -20,7 +20,7 @@ You can find the latest stable version of the app in the **Releases** section.
 - **Jio/IVR Support:** Specialized mode for networks that prioritize IVR over USSD.
 
 ## 🛠️ How it Works
-AirPay simplifies the complex \*99# USSD menu system. When you initiate a payment, the app dynamically constructs the correct USSD string (e.g., `*99*1*3...#`) and triggers a system call, automating the steps you would otherwise have to do manually.
+AirPay simplifies the complex \*99# USSD menu system. When you initiate a payment, the app dynamically constructs the correct USSD string and triggers a system call, automating the steps you would otherwise have to do manually.
 
 ## 🚀 Tech Stack
 - **Language:** Java

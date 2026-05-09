@@ -40,7 +40,6 @@ AirPay simplifies the complex \*99# USSD menu system. When you initiate a paymen
 
 ## 📩 Contact & Support
 For any inquiries, support, or feedback, please reach out via:
-- **Email:** [bindpratapsingh@gmail.com](mailto:bindpratapsingh@gmail.com)
 - **LinkedIn:** [Bind Pratap Singh](https://www.linkedin.com/in/bind-pratap-singh)
 - **Bug Reports:** [Open an Issue](https://github.com/bindpratapsingh/AirPay/issues/new)
 
